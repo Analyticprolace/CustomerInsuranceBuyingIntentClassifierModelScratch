@@ -6,7 +6,7 @@ ds = pd.read_csv("insurance_data.csv")
 
 x_train,y_train,x_test,y_test = train_test_split(ds[["age", "affordibility"]],ds.bought_insurance,test_size=0.2)
 
-def sigmoid_numpy(y):
+def sigmoid(y):
  return 1/(1+np.exp(-y))
 
 def log_loss(y_true, y_pred):
@@ -23,7 +23,7 @@ def gradient_descent(x1,x2,y_true,learning_rate,epochs):
   n = len(y_true)
   for i in range(epochs):
     y = x1 * w1 + x2 * w2 + b
-    y_pred = sigmoid_numpy(y)
+    y_pred = sigmoid(y)
     loss = log_loss(y_true,y_pred)
 
     dw1 = np.dot(x1, y_pred - y_true) / n
